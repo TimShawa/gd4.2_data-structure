@@ -24,20 +24,15 @@ var type: Variant.Type:
 		type = value
 
 
-
 func configure(field, type):
 	field_name = field
 	self.type = type
 	$HSplit/HBox/BtnType.selected = type
 
 
-
-
 func _on_btn_type_item_selected(index: int) -> void:
 	type = $HSplit/HBox/BtnType.get_item_id(index)
 	emit_signal(&'change_type', field_name, type)
-
-
 
 
 func _on_btn_erase_pressed() -> void:
@@ -59,3 +54,8 @@ func _on_field_name_text_submitted(new_name: String) -> void:
 		emit_signal(&'name_changed', old_name, new_name)
 	else:
 		$HSplit/HBox2/FieldName.text = field_name
+
+
+#TODO: On pressed, BtnOptions popups window with advanced field configuration.
+func _on_btn_options_pressed() -> void:
+	pass # Replace with function body.

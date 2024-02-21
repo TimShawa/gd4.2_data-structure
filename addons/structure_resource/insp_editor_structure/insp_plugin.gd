@@ -2,7 +2,7 @@
 extends EditorInspectorPlugin
 
 var PROPERTY = preload('res://addons/structure_resource/insp_editor_structure/structure_editor.scn')
-const STRUCTURE = preload('res://addons/structure_resource/data_structure.gd')
+const STRUCTURE = preload('res://addons/structure_resource/structure_base.gd')
 
 
 
@@ -14,7 +14,7 @@ func _can_handle(object: Object) -> bool:
 
 
 func _parse_category(object: Object, category: String) -> void:
-	if category == "data_structure.gd":
+	if category == "structure_base.gd":
 		var editor = PROPERTY.instantiate()
 		add_custom_control(editor)
 		editor.edited = object
