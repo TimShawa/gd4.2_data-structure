@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjcvunobgcbad"]
+
+[ext_resource type="Script" path="res://addons/structure_resource/test/node.tres.gd" id="1_1eipl"]
+[ext_resource type="Script" path="res://addons/structure_resource/struct.gd" id="2_sllfo"]
+
+[sub_resource type="Resource" id="Resource_5qe4w"]
+script = ExtResource("2_sllfo")
+"path to base" = "<internal>"
+field = null
+
+[node name="Node" type="Node"]
+script = ExtResource("1_1eipl")
+structure = SubResource("Resource_5qe4w")
