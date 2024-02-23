@@ -23,6 +23,9 @@ func update() -> void:
 		entry.connect(&'move', edited.move_field)
 		entry.connect(&'name_changed', edited.rename_field)
 		entry.connect(&'change_type', edited.change_field_type)
+	$HSeparator.visible = %Fields.get_child_count()
+	$ScrollContainer.visible = %Fields.get_child_count()
+	$HSeparator2.visible = %Fields.get_child_count()
 
 
 
