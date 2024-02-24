@@ -80,7 +80,12 @@ func _init(map: Dictionary = {}) -> void:
 
 
 func _get_property_list() -> Array[Dictionary]:
-	var list: Array[Dictionary] = []
+	var list: Array[Dictionary] = [
+		{	name = &"signature", type = TYPE_DICTIONARY,
+			usage = PROPERTY_USAGE_STORAGE },
+		{	name = &"default_values", type = TYPE_DICTIONARY,
+			usage = PROPERTY_USAGE_STORAGE }
+	]
 	if FileAccess.file_exists(resource_path):
 		list.push_back({
 			name = "Default Values",

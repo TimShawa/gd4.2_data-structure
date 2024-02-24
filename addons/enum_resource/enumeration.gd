@@ -1,4 +1,5 @@
 @tool
+@icon("res://addons/enum_resource/icon_enumeration.svg")
 extends Resource
 class_name Enumeration
 
