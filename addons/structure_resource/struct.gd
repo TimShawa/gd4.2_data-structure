@@ -34,6 +34,8 @@ class_name Struct
 ## 
 ## struct.revert("field_a")     # revert to default value
 ## print( struct.field_a )      # output: 17
+## [/codeblock]
+## To check if structure is an instance of certain [StructureBase], use [method StructureBase.is_instance] method.[br]
 
 
 
@@ -211,5 +213,9 @@ func revert(field: StringName):
 		if field in __data__:
 			set(field, __base__.default_values[field])
 
+
+## Returns copy of srructure's [code]__data__[/code].
+func extract():
+	return __data__.duplicate(1)
 
 #endregion

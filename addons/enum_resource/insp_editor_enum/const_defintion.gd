@@ -54,17 +54,7 @@ func _on_const_name_text_submitted(new_name: String) -> void:
 
 
 func _on_const_name_text_changed(new_text: String) -> void:
-	new_text = new_text.to_upper()
-	for i in new_text.length():
-		if new_text[i] == " ":
-			new_text[i] = "_"
-		if new_text.unicode_at(i) not in (
-				range( "0".unicode_at(0), "9".unicode_at(0) ) \
-				+ range( "A".unicode_at(0), "Z".unicode_at(0) ) \
-				+ ["_".unicode_at(0)]
-		):
-			new_text[i] = "#"
-	new_text = new_text.replace("#", "")
+	new_text = Enumeration._validate_const_name(new_text)
 	var pos = $HSplit/HBox2/ConstName.caret_column
 	$HSplit/HBox2/ConstName.text = new_text
 	$HSplit/HBox2/ConstName.caret_column = min(pos, new_text.length())

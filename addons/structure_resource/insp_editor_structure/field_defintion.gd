@@ -27,7 +27,7 @@ var type: Variant.Type:
 func configure(field, type):
 	field_name = field
 	self.type = type
-	$HSplit/HBox/BtnType.selected = type
+	$HSplit/HBox/BtnType.selected = $HSplit/HBox/BtnType.get_item_index(type)
 
 
 func _on_btn_type_item_selected(index: int) -> void:
@@ -56,6 +56,8 @@ func _on_field_name_text_submitted(new_name: String) -> void:
 		$HSplit/HBox2/FieldName.text = field_name
 
 
-#TODO: On pressed, BtnOptions popups window with advanced field configuration.
 func _on_btn_options_pressed() -> void:
-	pass # Replace with function body.
+	var config := preload("res://addons/structure_resource/insp_editor_structure/field_config.scn").instantiate() as Window
+	get_tree().root.add_child(config)
+	config.configure($"..".owner.edited, field_name)
+	config.popup_centered()

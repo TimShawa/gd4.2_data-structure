@@ -46,7 +46,7 @@ func move_const(idx, offset):
 		1:
 			if idx >= edited.size() - 1:
 				return
-	var new = edited.literals()[idx + offset]
+	var new = edited.get_literal(idx + offset)
 	edited._constants[idx] = new
 	edited._constants[idx + offset] = original
 	edited.emit_changed()

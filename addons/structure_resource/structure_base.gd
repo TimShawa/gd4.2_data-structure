@@ -12,8 +12,6 @@ class_name StructureBase
 
 
 
-#endregion
-
 #region Variables
 
 ## A structure's scheme difining its members and how they operate with [Variants].
@@ -83,7 +81,7 @@ func _init(map: Dictionary = {}) -> void:
 
 func _get_property_list() -> Array[Dictionary]:
 	var list: Array[Dictionary] = []
-	if resource_path.trim_prefix("res://").split(":", 0).size() == 1:
+	if FileAccess.file_exists(resource_path):
 		list.push_back({
 			name = "Default Values",
 			type = TYPE_NIL,
@@ -373,13 +371,6 @@ func unique_name(name: StringName) -> StringName:
 
 
 
-## @deprecated
-## Returns StructServer singleton.
-static func get_server():
-	return Engine.get_singleton(&"StructServer")
-
-
-
 
 ## Helper for rearrange fields in signature (or [i]any other[/i] dictionary, so it may be more useful).[br]
 ## [br]
@@ -429,9 +420,8 @@ func is_empty():
 
 
 
-## @experimental
-## Returns name of structure
-func get_struct_id():
-	if resource_path.is_empty():
-		return "<unsaved>"
-	return resource_path.get_file().get_basename().split(".", 0)[-1]
+
+func is_instance(struct: Struct) -> bool:
+	if FileAccess.file_exists(resource_path):
+		return struct.__base_path__ == resource_path
+	return false

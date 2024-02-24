@@ -58,7 +58,6 @@ func rename_const(idx: int, new_name: String) -> Error:
 		return ERR_ALREADY_IN_USE
 	_constants[idx] = new_name
 	emit_changed()
-	printt(idx, new_name, _constants)
 	return OK
 
 
@@ -97,6 +96,8 @@ func is_empty():
 	return _constants.is_empty()
 
 
+
+
 func get_instance():
 	pass
 
@@ -111,3 +112,23 @@ func get_literal(idx):
 
 func size():
 	return _constants.size()
+
+
+
+
+static func _validate_const_name(text: String) -> String:
+	if text.is_empty():
+		return text
+	if text.unicode_at(0) in range("0".unicode_at(0), "9".unicode_at(0)):
+		text[0] = "_"
+	for i in text.length():
+		if text[i] == " ":
+			text[i] = "_"
+		if text.unicode_at(i) not in (
+				range( "0".unicode_at(0), "9".unicode_at(0) )
+				+ range( "A".unicode_at(0), "Z".unicode_at(0) )
+				+ range( "a".unicode_at(0), "z".unicode_at(0))
+				+ ["_".unicode_at(0)]
+		):
+			text[i] = "#"
+	return text.replace("#", "")
